@@ -6,7 +6,8 @@ namespace UCRS.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(UCRS.Data.UniversitySystemDbContext context)
