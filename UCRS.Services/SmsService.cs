@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-namespace UCRS.Web
+namespace UCRS.Services
 {
     public class SmsService : IIdentityMessageService
     {

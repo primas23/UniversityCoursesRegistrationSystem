@@ -176,10 +176,8 @@
     <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
-    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -294,6 +292,10 @@
     <ProjectReference Include="..\UCRS.Data\UCRS.Data.csproj">
       <Project>{d606b4e0-34e5-47bd-851f-195ae8a562dd}</Project>
       <Name>UCRS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCRS.Services\UCRS.Services.csproj">
+      <Project>{9B33C6F4-3C56-45F9-BE41-ABDF300E37FA}</Project>
+      <Name>UCRS.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

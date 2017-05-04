@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-namespace UCRS.Web
+namespace UCRS.Services
 {
     public class EmailService : IIdentityMessageService
     {
