@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UCRS.Data
+namespace UCRS.Data.Models
 {
     /// <summary>
     /// Base class for Data Models
