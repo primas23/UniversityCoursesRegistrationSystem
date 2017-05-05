@@ -1,5 +1,7 @@
 using System.Data.Entity.Migrations;
 
+using UCRS.Data.Models;
+
 namespace UCRS.Data.Migrations
 {
     public sealed class Configuration : DbMigrationsConfiguration<UniversitySystemDbContext>
@@ -10,20 +12,44 @@ namespace UCRS.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(UCRS.Data.UniversitySystemDbContext context)
+        protected override void Seed(UniversitySystemDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            Course math = new Course()
+            {
+                Name = "Math"
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            Course physics = new Course()
+            {
+                Name = "Physics"
+            };
+
+            context.Courses.AddOrUpdate(
+                c => c.Name,
+                math,
+                physics
+            );
+
+            Student peter = new Student()
+            {
+                Name = "Peter"
+            };
+            peter.Courses.Add(math);
+
+            Student ivan = new Student()
+            {
+                Name = "Ivan"
+            };
+            ivan.Courses.Add(math);
+            ivan.Courses.Add(physics);
+
+            context.Students.AddOrUpdate(
+                s => s.Name,
+                peter,
+                ivan
+            );
+
+            context.SaveChanges();
         }
     }
 }
