@@ -8,6 +8,7 @@ using Ninject.Web.Common;
 
 using UCRS.Common.Contracts;
 using UCRS.Data;
+using UCRS.Data.Contracts;
 using UCRS.Services;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UCRS.Web.App_Start.NinjectWebCommon), "Start")]
@@ -68,6 +69,7 @@ namespace UCRS.Web.App_Start
             kernel.Bind<IUniversitySystemDbContext>().To<UniversitySystemDbContext>();
 
             kernel.Bind<IStudentService>().To<StudentService>();
+            kernel.Bind<ICourseService>().To<CourseService>();
         }
     }
 }

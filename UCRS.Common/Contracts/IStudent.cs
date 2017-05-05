@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UCRS.Common.Contracts
 {
@@ -11,6 +13,7 @@ namespace UCRS.Common.Contracts
         /// <value>
         /// The identifier.
         /// </value>
+        [Key]
         Guid Id { get; set; }
 
         /// <summary>
@@ -19,6 +22,9 @@ namespace UCRS.Common.Contracts
         /// <value>
         /// The name.
         /// </value>
+        [Index(IsUnique = true)]
+        [MaxLength(GlobalConstants.MaxNameLenght)]
+        [MinLength(GlobalConstants.MinNameLenght)]
         string Name { get; set; }
 
         /// <summary>

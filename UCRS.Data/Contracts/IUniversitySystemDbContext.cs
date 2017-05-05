@@ -1,6 +1,9 @@
 ﻿using System.Data.Entity;
 
-namespace UCRS.Common.Contracts
+using UCRS.Common.Contracts;
+using UCRS.Data.Models;
+
+namespace UCRS.Data.Contracts
 {
     public interface IUniversitySystemDbContext
     {
@@ -10,7 +13,7 @@ namespace UCRS.Common.Contracts
         /// <value>
         /// The courses.
         /// </value>
-        IDbSet<ICourse> Courses { get; set; }
+        IDbSet<Course> Courses { get; set; }
 
         /// <summary>
         /// Gets or sets the students.
@@ -18,7 +21,7 @@ namespace UCRS.Common.Contracts
         /// <value>
         /// The students.
         /// </value>
-        IDbSet<IStudent> Students { get; set; }
+        IDbSet<Student> Students { get; set; }
 
         /// <summary>
         /// Saves the changes.

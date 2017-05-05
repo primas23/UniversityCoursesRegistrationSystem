@@ -21,5 +21,10 @@
         /// The student service null message
         /// </summary>
         public const string StudentServiceNullMessage = "The Student Service is null";
+
+        /// <summary>
+        /// The course service null message
+        /// </summary>
+        public const string CourseServiceNullMessage = "The Course Service is null";
     }
 }

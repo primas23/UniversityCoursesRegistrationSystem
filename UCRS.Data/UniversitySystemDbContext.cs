@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-using UCRS.Common.Contracts;
+using UCRS.Data.Contracts;
 using UCRS.Data.Models;
 
 namespace UCRS.Data
@@ -19,8 +19,8 @@ namespace UCRS.Data
             return new UniversitySystemDbContext();
         }
 
-        public IDbSet<IStudent> Students { get; set; }
+        public IDbSet<Student> Students { get; set; }
 
-        public IDbSet<ICourse> Courses { get; set; }
+        public IDbSet<Course> Courses { get; set; }
     }
 }

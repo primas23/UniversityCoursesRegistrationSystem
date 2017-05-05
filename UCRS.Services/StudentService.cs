@@ -4,6 +4,8 @@ using System.Linq;
 
 using UCRS.Common;
 using UCRS.Common.Contracts;
+using UCRS.Data.Contracts;
+using UCRS.Data.Models;
 
 namespace UCRS.Services
 {
@@ -25,12 +27,7 @@ namespace UCRS.Services
 
             this._context = context;
         }
-
-        public ICollection<ICourse> GetAllCourses()
-        {
-            return null;
-        }
-
+        
         /// <summary>
         /// Gets the student courses.
         /// </summary>
@@ -40,9 +37,7 @@ namespace UCRS.Services
         /// </returns>
         public ICollection<ICourse> GetStudentCourses(Guid studentId)
         {
-            IStudent student = this._context
-                .Students
-                .FirstOrDefault(s => s.Id == studentId);
+            IStudent student = this.GetStudent(studentId);
 
             if (student != null)
             {
@@ -52,6 +47,40 @@ namespace UCRS.Services
             }
 
             return new List<ICourse>();
+        }
+
+        /// <summary>
+        /// Gets the student courses ids.
+        /// </summary>
+        /// <param name="studentId">The student identifier.</param>
+        /// <returns>
+        /// Collection of the courses ids in which the student is registered.
+        /// </returns>
+        public ICollection<Guid> GetStudentCoursesIds(Guid studentId)
+        {
+            Student student = this.GetStudent(studentId);
+
+            if (student != null)
+            {
+                return student
+                    .Courses
+                    .Select(c => c.Id)
+                    .ToList();
+            }
+            
+            return new List<Guid>();
+        }
+
+        /// <summary>
+        /// Gets the student with the supplied id.
+        /// </summary>
+        /// <param name="studentId">The student identifier.</param>
+        /// <returns>Returns null if not fould.</returns>
+        private Student GetStudent(Guid studentId)
+        {
+            return this._context
+                .Students
+                .FirstOrDefault(s => s.Id == studentId);
         }
     }
 }

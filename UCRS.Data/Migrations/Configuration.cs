@@ -1,5 +1,6 @@
 using System.Data.Entity.Migrations;
 
+using UCRS.Common.Contracts;
 using UCRS.Data.Models;
 
 namespace UCRS.Data.Migrations
