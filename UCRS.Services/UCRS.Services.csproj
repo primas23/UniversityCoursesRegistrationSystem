@@ -60,10 +60,25 @@
     <Compile Include="EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmsService.cs" />
+    <Compile Include="StudentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UCRS.Common\UCRS.Common.csproj">
+      <Project>{4963c3ac-3d5f-416a-b3df-4e56b17d2863}</Project>
+      <Name>UCRS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCRS.Data.Models\UCRS.Data.Models.csproj">
+      <Project>{D14CF30C-AC3D-4664-A81C-406BF6B37621}</Project>
+      <Name>UCRS.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCRS.Data\UCRS.Data.csproj">
+      <Project>{D606B4E0-34E5-47BD-851F-195AE8A562DD}</Project>
+      <Name>UCRS.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,5 +11,10 @@
         /// The minimum name lenght
         /// </summary>
         public const int MinNameLenght = 3;
+
+        /// <summary>
+        /// The context null message
+        /// </summary>
+        public const string ContextNullMessage = "The context is null";
     }
 }

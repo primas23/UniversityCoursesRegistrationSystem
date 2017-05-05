@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UCRS.Common\UCRS.Common.csproj">
+      <Project>{4963C3AC-3D5F-416A-B3DF-4E56B17D2863}</Project>
+      <Name>UCRS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UCRS.Data.Models\UCRS.Data.Models.csproj">
       <Project>{d14cf30c-ac3d-4664-a81c-406bf6b37621}</Project>
       <Name>UCRS.Data.Models</Name>

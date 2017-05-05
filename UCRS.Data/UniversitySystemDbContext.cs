@@ -1,12 +1,13 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+using UCRS.Common.Contracts;
 using UCRS.Data.Models;
 
 namespace UCRS.Data
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class UniversitySystemDbContext : IdentityDbContext<ApplicationUser>
+    public class UniversitySystemDbContext : IdentityDbContext<ApplicationUser>, IUniversitySystemDbContext
     {
         public UniversitySystemDbContext()
             : base("UniversitySystemDBConnectionString", throwIfV1Schema: false)
@@ -18,8 +19,8 @@ namespace UCRS.Data
             return new UniversitySystemDbContext();
         }
 
-        public IDbSet<Student> Students { get; set; }
+        public IDbSet<IStudent> Students { get; set; }
 
-        public IDbSet<Course> Courses { get; set; }
+        public IDbSet<ICourse> Courses { get; set; }
     }
 }
