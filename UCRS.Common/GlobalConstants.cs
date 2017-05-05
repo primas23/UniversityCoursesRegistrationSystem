@@ -16,5 +16,10 @@
         /// The context null message
         /// </summary>
         public const string ContextNullMessage = "The context is null";
+
+        /// <summary>
+        /// The student service null message
+        /// </summary>
+        public const string StudentServiceNullMessage = "The Student Service is null";
     }
 }

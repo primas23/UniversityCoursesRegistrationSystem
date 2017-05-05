@@ -4,22 +4,13 @@ using System.Linq;
 
 using UCRS.Common;
 using UCRS.Common.Contracts;
-using UCRS.Data;
 
 namespace UCRS.Services
 {
     public class StudentService : IStudentService
     {
         private IUniversitySystemDbContext _context = null;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StudentService"/> class with the default context.
-        /// </summary>
-        public StudentService()
-        {
-            this._context = new UniversitySystemDbContext();
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="StudentService"/> class.
         /// </summary>
