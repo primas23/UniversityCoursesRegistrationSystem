@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using UCRS.Common.Contracts;
+using UCRS.Data.Models;
 
 namespace UCRS.Web.Models
 {
@@ -13,7 +13,7 @@ namespace UCRS.Web.Models
         /// <value>
         /// The registered courses.
         /// </value>
-        public IList<ICourse> AllCourses { get; set; }
+        public IList<Course> AllCourses { get; set; }
 
         /// <summary>
         /// Gets or sets the registered courses ids.

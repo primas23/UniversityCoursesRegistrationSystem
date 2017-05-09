@@ -6,10 +6,10 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 
-using UCRS.Common.Contracts;
 using UCRS.Data;
 using UCRS.Data.Contracts;
 using UCRS.Services;
+using UCRS.Services.Contracts;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UCRS.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(UCRS.Web.App_Start.NinjectWebCommon), "Stop")]

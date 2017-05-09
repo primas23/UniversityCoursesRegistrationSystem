@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
-namespace UCRS.Common.Contracts
+using UCRS.Data.Models;
+
+namespace UCRS.Services.Contracts
 {
     public interface ICourseService
     {
@@ -8,6 +10,6 @@ namespace UCRS.Common.Contracts
         /// Gets all courses.
         /// </summary>
         /// <returns>Collection of all courses</returns>
-        ICollection<ICourse> GetAllCourses();
+        ICollection<Course> GetAllCourses();
     }
 }

@@ -3,18 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using UCRS.Common;
-using UCRS.Common.Contracts;
 
 namespace UCRS.Data.Models
 {
-    public class Student : BaseModel, IStudent
+    public class Student : BaseModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Student"/> class.
         /// </summary>
         public Student()
         {
-            this.Courses = new HashSet<ICourse>();
+            this.Courses = new HashSet<Course>();
         }
 
         /// <summary>
@@ -34,6 +33,6 @@ namespace UCRS.Data.Models
         /// <value>
         /// The courses.
         /// </value>
-        public virtual ICollection<ICourse> Courses { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

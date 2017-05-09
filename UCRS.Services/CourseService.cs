@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UCRS.Common;
-using UCRS.Common.Contracts;
 using UCRS.Data.Contracts;
 using UCRS.Data.Models;
+using UCRS.Services.Contracts;
 
 namespace UCRS.Services
 {
@@ -34,12 +34,10 @@ namespace UCRS.Services
         /// <returns>
         /// Collection of all courses
         /// </returns>
-        public ICollection<ICourse> GetAllCourses()
+        public ICollection<Course> GetAllCourses()
         {
             return this._context
                 .Courses
-                .ToList()
-                .Cast<ICourse>()
                 .ToList();
         }
     }

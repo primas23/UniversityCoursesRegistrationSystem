@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UCRS.Common;
-using UCRS.Common.Contracts;
 using UCRS.Data.Contracts;
 using UCRS.Data.Models;
+using UCRS.Services.Contracts;
 
 namespace UCRS.Services
 {
@@ -35,9 +35,9 @@ namespace UCRS.Services
         /// <returns>
         /// Collection of the courses in which the student is registered.
         /// </returns>
-        public ICollection<ICourse> GetStudentCourses(Guid studentId)
+        public ICollection<Course> GetStudentCourses(Guid studentId)
         {
-            IStudent student = this.GetStudent(studentId);
+            Student student = this.GetStudent(studentId);
 
             if (student != null)
             {
@@ -46,7 +46,7 @@ namespace UCRS.Services
                     .ToList();
             }
 
-            return new List<ICourse>();
+            return new List<Course>();
         }
 
         /// <summary>

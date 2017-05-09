@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace UCRS.Common.Contracts
+using UCRS.Data.Models;
+
+namespace UCRS.Services.Contracts
 {
     public interface IStudentService
     {
@@ -12,7 +14,7 @@ namespace UCRS.Common.Contracts
         /// <returns>
         /// Collection of the courses in which the student is registered.
         /// </returns>
-        ICollection<ICourse> GetStudentCourses(Guid studentId);
+        ICollection<Course> GetStudentCourses(Guid studentId);
 
         /// <summary>
         /// Gets the student courses ids.

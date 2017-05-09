@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 
 using UCRS.Common;
-using UCRS.Common.Contracts;
+using UCRS.Services.Contracts;
 using UCRS.Web.Models;
 
 namespace UCRS.Web.Controllers
@@ -46,9 +46,9 @@ namespace UCRS.Web.Controllers
                     .GetStudentCoursesIds(strudneId)
                     .ToList(),
 
-                AllCourses = this._courseService
-                    .GetAllCourses()
-                    .ToList()
+                //AllCourses = this._courseService
+                //    .GetAllCourses()
+                //    .ToList()
             };
 
             return View(viewModel);
