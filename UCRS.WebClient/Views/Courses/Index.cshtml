@@ -1,5 +1,42 @@
-﻿@{
+﻿@using UCRS.WebClient.Models
+
+@model IList<CourseViewModel>
+
+@{
     ViewBag.Title = "Courses";
 }
 
-<div>Courses</div>
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Save", "Courses", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>You can change the name.</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            for (var i = 0; i < this.Model.Count; i++)
+            {
+                @Html.HiddenFor(m => m[i].Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m[i].Name, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m[i].Name, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m[i].Name, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

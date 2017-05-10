@@ -40,5 +40,28 @@ namespace UCRS.Services
                 .Courses
                 .ToList();
         }
+
+        /// <summary>
+        /// Saves the courses.
+        /// </summary>
+        /// <param name="courses">The courses.</param>
+        public void SaveCourses(IList<Course> courses)
+        {
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                Guid id = courses[i].Id;
+
+                Course course = this._context
+                    .Courses
+                    .FirstOrDefault(c => c.Id == id);
+
+                if (course != null)
+                {
+                    course.Name = courses[i].Name;
+                }
+            }
+
+            this._context.SaveChanges();
+        }
     }
 }

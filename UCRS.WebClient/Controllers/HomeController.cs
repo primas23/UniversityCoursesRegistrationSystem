@@ -47,6 +47,7 @@ namespace UCRS.WebClient.Controllers
             this._identifierProvider = identifierProvider;
         }
 
+        [HttpGet]
         [AuthorizeStudent]
         public ActionResult Index()
         {

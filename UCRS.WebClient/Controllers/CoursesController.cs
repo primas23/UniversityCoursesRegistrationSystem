@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 using UCRS.Common;
+using UCRS.Data.Models;
 using UCRS.Services.Contracts;
+using UCRS.WebClient.Attributes;
 using UCRS.WebClient.Models;
 
 namespace UCRS.WebClient.Controllers
@@ -35,22 +38,70 @@ namespace UCRS.WebClient.Controllers
             this._studentService = studentService;
         }
 
+        [HttpGet]
+        [AuthorizeStudent]
         public ActionResult Index()
         {
-            Guid strudneId = Guid.Parse("6B00F216-DA67-49F2-AF4F-7E9548F8F40F");
+            IList<CourseViewModel> coursesViewModel = this.MapCoursesToViewModels(this._courseService.GetAllCourses());
 
-            StudentCoursesViewModel viewModel = new StudentCoursesViewModel
+            return View(coursesViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeStudent]
+        public ActionResult Save(ICollection<CourseViewModel> courseViewModels)
+        {
+            if (ModelState.IsValid == false)
             {
-                RegisteredCoursesIds = this._studentService
-                    .GetStudentCoursesIds(strudneId)
-                    .ToList(),
+                return View(courseViewModels);
+            }
 
-                //AllCourses = this._courseService
-                //    .GetAllCourses()
-                //    .ToList()
-            };
+            this._courseService.SaveCourses(this.MapViewModelsToCourses(courseViewModels));
 
-            return View(viewModel);
+            return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// Maps the view models to courses.
+        /// </summary>
+        /// <param name="courseViewModels">The course view models.</param>
+        /// <returns>Collection of Courses</returns>
+        private IList<Course> MapViewModelsToCourses(ICollection<CourseViewModel> courseViewModels)
+        {
+            IList<Course> courses = new List<Course>();
+
+            foreach (CourseViewModel courseViewModel in courseViewModels)
+            {
+                courses.Add(new Course()
+                {
+                    Id = courseViewModel.Id,
+                    Name = courseViewModel.Name
+                });
+            }
+
+            return courses;
+        }
+
+        /// <summary>
+        /// Maps the courses to view models.
+        /// </summary>
+        /// <param name="courses">The courses.</param>
+        /// <returns>Collection of CourseViewModels</returns>
+        private IList<CourseViewModel> MapCoursesToViewModels(ICollection<Course> courses)
+        {
+            IList<CourseViewModel> courseViewModels = new List<CourseViewModel>();
+
+            foreach (Course course in courses)
+            {
+                courseViewModels.Add(new CourseViewModel()
+                {
+                    Id = course.Id,
+                    Name = course.Name
+                });
+            }
+
+            return courseViewModels;
         }
     }
 }

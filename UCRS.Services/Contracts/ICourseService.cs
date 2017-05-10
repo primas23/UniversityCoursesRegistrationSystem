@@ -11,5 +11,11 @@ namespace UCRS.Services.Contracts
         /// </summary>
         /// <returns>Collection of all courses</returns>
         ICollection<Course> GetAllCourses();
+
+        /// <summary>
+        /// Saves the courses.
+        /// </summary>
+        /// <param name="courses">The courses.</param>
+        void SaveCourses(IList<Course> courses);
     }
 }
