@@ -1,30 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
+using UCRS.Common;
+using UCRS.Services.Contracts;
+using UCRS.WebClient.Models;
 
 namespace UCRS.WebClient.Controllers
 {
     public class HomeController : Controller
     {
+        private IStudentService _studentService = null;
+        private ICourseService _courseService = null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        /// <param name="studentService">The student service.</param>
+        /// <param name="courseService">The course service</param>
+        /// <exception cref="ArgumentNullException">The Student Service is null</exception>
+        public HomeController(IStudentService studentService, ICourseService courseService)
+        {
+            if (studentService == null)
+            {
+                throw new ArgumentNullException(GlobalConstants.StudentServiceNullMessage);
+            }
+
+            if (courseService == null)
+            {
+                throw new ArgumentNullException(GlobalConstants.StudentServiceNullMessage);
+            }
+
+            this._courseService = courseService;
+            this._studentService = studentService;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
+            Guid strudneId = Guid.Parse("6B00F216-DA67-49F2-AF4F-7E9548F8F40F");
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            StudentCoursesViewModel viewModel = new StudentCoursesViewModel
+            {
+                RegisteredCoursesIds = this._studentService
+                    .GetStudentCoursesIds(strudneId)
+                    .ToList(),
 
-            return View();
-        }
+                //AllCourses = this._courseService
+                //    .GetAllCourses()
+                //    .ToList()
+            };
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(viewModel);
         }
     }
 }
