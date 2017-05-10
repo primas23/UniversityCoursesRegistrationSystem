@@ -17,5 +17,11 @@ namespace UCRS.Services.Contracts
         /// </summary>
         /// <param name="courses">The courses.</param>
         void SaveCourses(IList<Course> courses);
+
+        /// <summary>
+        /// Saves the course.
+        /// </summary>
+        /// <param name="course">The course.</param>
+        void SaveCourse(Course course);
     }
 }

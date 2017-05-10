@@ -63,5 +63,15 @@ namespace UCRS.Services
 
             this._context.SaveChanges();
         }
+
+        /// <summary>
+        /// Saves the course.
+        /// </summary>
+        /// <param name="course">The course.</param>
+        public void SaveCourse(Course course)
+        {
+            this._context.Courses.Add(course);
+            this._context.SaveChanges();
+        }
     }
 }

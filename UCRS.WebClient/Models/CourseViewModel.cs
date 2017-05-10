@@ -13,7 +13,6 @@ namespace UCRS.WebClient.Models
         /// <value>
         /// The identifier.
         /// </value>
-        [Required]
         public Guid Id { get; set; }
 
         /// <summary>

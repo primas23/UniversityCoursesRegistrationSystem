@@ -1,0 +1,34 @@
+﻿@using UCRS.WebClient.Models
+
+@model CourseViewModel
+
+<div class="row">
+    <div class="col-md-8">
+        @using (Ajax.BeginForm("Add", "Courses", null ,new AjaxOptions()
+        {
+            InsertionMode = InsertionMode.InsertAfter,
+            UpdateTargetId = "coursesPlaceholder",
+            HttpMethod = "POST"
+        }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Add new category.</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" class="btn btn-default"/>
+                </div>
+            </div>
+        }
+    </div>
+</div>

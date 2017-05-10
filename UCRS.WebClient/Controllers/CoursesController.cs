@@ -59,7 +59,32 @@ namespace UCRS.WebClient.Controllers
 
             this._courseService.SaveCourses(this.MapViewModelsToCourses(courseViewModels));
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Courses");
+        }
+
+        [HttpGet]
+        [AuthorizeStudent]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AuthorizeStudent]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(CourseViewModel courseViewModel)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(courseViewModel);
+            }
+            
+            this._courseService.SaveCourse(new Course()
+            {
+                Name = courseViewModel.Name
+            });
+
+            return PartialView("Add");
         }
 
         /// <summary>
