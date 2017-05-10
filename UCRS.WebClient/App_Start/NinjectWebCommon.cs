@@ -70,6 +70,7 @@ namespace UCRS.WebClient.App_Start
 
             kernel.Bind<IStudentService>().To<StudentService>();
             kernel.Bind<ICourseService>().To<CourseService>();
+            kernel.Bind<IAccountService>().To<AccountService>();
         }        
     }
 }

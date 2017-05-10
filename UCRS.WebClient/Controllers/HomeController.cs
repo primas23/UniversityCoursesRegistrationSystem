@@ -37,7 +37,7 @@ namespace UCRS.WebClient.Controllers
 
         public ActionResult Index()
         {
-            Guid strudneId = Guid.Parse("F3B003A5-6A3E-4238-ADDF-E0F6BB230E1A");
+            Guid strudneId = Guid.Parse("1FBDC140-3253-4C1B-9226-C702214CAEDE");
 
             StudentCoursesViewModel viewModel = new StudentCoursesViewModel
             {

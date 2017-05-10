@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 using UCRS.Common;
@@ -10,47 +11,68 @@ namespace UCRS.WebClient.Controllers
 {
     public class AccountController : Controller
     {
-        private IStudentService _studentService = null;
-        private ICourseService _courseService = null;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HomeController"/> class.
-        /// </summary>
-        /// <param name="studentService">The student service.</param>
-        /// <param name="courseService">The course service</param>
-        /// <exception cref="ArgumentNullException">The Student Service is null</exception>
-        public AccountController(IStudentService studentService, ICourseService courseService)
+        private IAccountService _accountService = null;
+        
+        public AccountController(IAccountService accountService)
         {
-            if (studentService == null)
+            if (accountService == null)
             {
-                throw new ArgumentNullException(GlobalConstants.StudentServiceNullMessage);
+                throw new ArgumentNullException(GlobalConstants.AccountServiceNullMessage);
             }
 
-            if (courseService == null)
-            {
-                throw new ArgumentNullException(GlobalConstants.StudentServiceNullMessage);
-            }
-
-            this._courseService = courseService;
-            this._studentService = studentService;
+            this._accountService = accountService;
         }
 
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Login()
         {
-            Guid strudneId = Guid.Parse("6B00F216-DA67-49F2-AF4F-7E9548F8F40F");
+            return View();
+        }
 
-            StudentCoursesViewModel viewModel = new StudentCoursesViewModel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid == false)
             {
-                RegisteredCoursesIds = this._studentService
-                    .GetStudentCoursesIds(strudneId)
-                    .ToList(),
+                return View(model);
+            }
 
-                //AllCourses = this._courseService
-                //    .GetAllCourses()
-                //    .ToList()
-            };
+            bool result = this._accountService.SignIn(model.Email, model.Password);
 
-            return View(viewModel);
+            if (result == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            this.ModelState.AddModelError("", "Invalid login attempt.");
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string registerMessage = this._accountService.Register(model.Email, model.Password, model.Name);
+
+                if (string.IsNullOrWhiteSpace(registerMessage))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                this.ModelState.AddModelError("", registerMessage);
+            }
+
+            return View(model);
         }
     }
 }

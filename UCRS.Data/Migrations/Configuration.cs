@@ -24,10 +24,22 @@ namespace UCRS.Data.Migrations
                 Name = "Physics"
             };
 
+            Course football = new Course()
+            {
+                Name = "football"
+            };
+
+            Course chess = new Course()
+            {
+                Name = "chess"
+            };
+
             context.Courses.AddOrUpdate(
                 c => c.Name,
                 math,
-                physics
+                physics,
+                football,
+                chess
             );
 
             Student peter = new Student()

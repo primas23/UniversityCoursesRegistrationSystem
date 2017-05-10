@@ -1,20 +1,11 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using UCRS.Common;
 
-namespace UCRS.Data.Models
+namespace UCRS.WebClient.Models
 {
-    public class Student : BaseModel
+    public class RegisterViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Student"/> class.
-        /// </summary>
-        public Student()
-        {
-            this.Courses = new HashSet<Course>();
-        }
-
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -39,22 +30,25 @@ namespace UCRS.Data.Models
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the confirm password.
+        /// </summary>
+        /// <value>
+        /// The confirm password.
+        /// </value>
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        [Required]
+        [Index(IsUnique = true)]
         [MaxLength(GlobalConstants.MaxNameLenght)]
         [MinLength(GlobalConstants.MinNameLenght)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the courses.
-        /// </summary>
-        /// <value>
-        /// The courses.
-        /// </value>
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

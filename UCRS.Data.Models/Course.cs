@@ -22,7 +22,7 @@ namespace UCRS.Data.Models
         /// <value>
         /// The name.
         /// </value>
-        [Index(IsUnique = true)]
+        [Required]
         [MaxLength(GlobalConstants.MaxNameLenght)]
         [MinLength(GlobalConstants.MinNameLenght)]
         public string Name { get; set; }
