@@ -82,5 +82,33 @@ namespace UCRS.Services
                 .Students
                 .FirstOrDefault(s => s.Id == studentId);
         }
+
+        /// <summary>
+        /// Doeses the student exist.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// If the student exists.
+        /// </returns>
+        public bool DoesStudentExist(Guid id)
+        {
+            return this._context.Students.Count(s => s.Id == id) > 0;
+        }
+
+        /// <summary>
+        /// Gets the student id by email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>
+        /// The id of the student
+        /// </returns>
+        public Guid GetStudentIdbyEmail(string email)
+        {
+            return this._context
+                .Students
+                .Where(s => s.Email == email)
+                .Select(s => s.Id)
+                .First();
+        }
     }
 }

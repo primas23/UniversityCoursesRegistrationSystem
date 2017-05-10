@@ -23,15 +23,25 @@
         public const int MaxPasswordLenght = 100;
 
         /// <summary>
+        /// The student cookie key
+        /// </summary>
+        public const string StudentCookieKey = "thisisstudentsupersecretcookie";
+
+        /// <summary>
         /// The context null message
         /// </summary>
         public const string ContextNullMessage = "The context is null";
 
         /// <summary>
+        /// The identifier provider null message
+        /// </summary>
+        public const string IdentifierProviderNullMessage = "The Identifier Provider is null";
+
+        /// <summary>
         /// The student service null message
         /// </summary>
         public const string StudentServiceNullMessage = "The Student Service is null";
-
+        
         /// <summary>
         /// The account service null message
         /// </summary>
@@ -56,5 +66,15 @@
         /// The password and confirm password do not match message
         /// </summary>
         public const string PasswordAndConfirmPasswordDoNotMatchMessage = "The password and confirmation password do not match.";
+
+        /// <summary>
+        /// The login redirect URL
+        /// </summary>
+        public const string LoginRedirectUrl = "/account/login";
+
+        /// <summary>
+        /// The salt
+        /// </summary>
+        public const string Salt = ".askdjh123kjn!";
     }
 }

@@ -24,5 +24,19 @@ namespace UCRS.Services.Contracts
         /// Collection of the courses ids in which the student is registered.
         /// </returns>
         ICollection<Guid> GetStudentCoursesIds(Guid studentId);
+
+        /// <summary>
+        /// Doeses the student exist.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>If the student exists.</returns>
+        bool DoesStudentExist(Guid id);
+
+        /// <summary>
+        /// Gets the student id by email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>The id of the student</returns>
+        Guid GetStudentIdbyEmail(string email);
     }
 }

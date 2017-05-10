@@ -10,6 +10,8 @@ using UCRS.Data;
 using UCRS.Data.Contracts;
 using UCRS.Services;
 using UCRS.Services.Contracts;
+using UCRS.Common.Providers;
+using UCRS.Common.Contracts;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UCRS.WebClient.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(UCRS.WebClient.App_Start.NinjectWebCommon), "Stop")]
@@ -67,6 +69,8 @@ namespace UCRS.WebClient.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUniversitySystemDbContext>().To<UniversitySystemDbContext>();
+
+            kernel.Bind<IIdentifierProvider>().To<IdentifierProvider>();
 
             kernel.Bind<IStudentService>().To<StudentService>();
             kernel.Bind<ICourseService>().To<CourseService>();
