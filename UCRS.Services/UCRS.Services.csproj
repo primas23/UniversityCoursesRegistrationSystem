@@ -60,9 +60,7 @@
     <Compile Include="Contracts\ICourseService.cs" />
     <Compile Include="Contracts\IStudentService.cs" />
     <Compile Include="CourseService.cs" />
-    <Compile Include="EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmsService.cs" />
     <Compile Include="StudentService.cs" />
   </ItemGroup>
   <ItemGroup>

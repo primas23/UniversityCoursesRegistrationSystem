@@ -8,7 +8,7 @@ using UCRS.WebClient.Models;
 
 namespace UCRS.WebClient.Controllers
 {
-    public class HomeController : Controller
+    public class AccountController : Controller
     {
         private IStudentService _studentService = null;
         private ICourseService _courseService = null;
@@ -19,7 +19,7 @@ namespace UCRS.WebClient.Controllers
         /// <param name="studentService">The student service.</param>
         /// <param name="courseService">The course service</param>
         /// <exception cref="ArgumentNullException">The Student Service is null</exception>
-        public HomeController(IStudentService studentService, ICourseService courseService)
+        public AccountController(IStudentService studentService, ICourseService courseService)
         {
             if (studentService == null)
             {
@@ -37,7 +37,7 @@ namespace UCRS.WebClient.Controllers
 
         public ActionResult Index()
         {
-            Guid strudneId = Guid.Parse("F3B003A5-6A3E-4238-ADDF-E0F6BB230E1A");
+            Guid strudneId = Guid.Parse("6B00F216-DA67-49F2-AF4F-7E9548F8F40F");
 
             StudentCoursesViewModel viewModel = new StudentCoursesViewModel
             {
@@ -45,9 +45,9 @@ namespace UCRS.WebClient.Controllers
                     .GetStudentCoursesIds(strudneId)
                     .ToList(),
 
-                AllCourses = this._courseService
-                    .GetAllCourses()
-                    .ToList()
+                //AllCourses = this._courseService
+                //    .GetAllCourses()
+                //    .ToList()
             };
 
             return View(viewModel);

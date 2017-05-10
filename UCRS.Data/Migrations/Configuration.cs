@@ -32,13 +32,17 @@ namespace UCRS.Data.Migrations
 
             Student peter = new Student()
             {
-                Name = "Peter"
+                Name = "Peter",
+                Email = "peter@peter.com",
+                Password = "peter@peter.com"
             };
             peter.Courses.Add(math);
 
             Student ivan = new Student()
             {
-                Name = "Ivan"
+                Name = "Ivan",
+                Email = "ivan@ivan.com",
+                Password = "ivan@ivan.com"
             };
             ivan.Courses.Add(math);
             ivan.Courses.Add(physics);
