@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using UCRS.Common;
 
 namespace UCRS.WebClient.Models
@@ -24,7 +25,7 @@ namespace UCRS.WebClient.Models
         /// The password.
         /// </value>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(GlobalConstants.MaxPasswordLenght, ErrorMessage = GlobalConstants.MustBeAtleastMessageFormat, MinimumLength = GlobalConstants.MinPasswordLenght)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -37,7 +38,7 @@ namespace UCRS.WebClient.Models
         /// </value>
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = GlobalConstants.PasswordAndConfirmPasswordDoNotMatchMessage)]
         public string ConfirmPassword { get; set; }
 
         /// <summary>
@@ -47,8 +48,8 @@ namespace UCRS.WebClient.Models
         /// The name.
         /// </value>
         [Index(IsUnique = true)]
-        [MaxLength(GlobalConstants.MaxNameLenght)]
-        [MinLength(GlobalConstants.MinNameLenght)]
+        [StringLength(GlobalConstants.MaxNameLenght, ErrorMessage = GlobalConstants.MustBeAtleastMessageFormat, MinimumLength = GlobalConstants.MinNameLenght)]
+        [Display(Name = "Name")]
         public string Name { get; set; }
     }
 }

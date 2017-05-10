@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 using UCRS.Common;
 
 namespace UCRS.Data.Models
@@ -23,7 +23,6 @@ namespace UCRS.Data.Models
         /// </value>
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
         /// <summary>
@@ -33,9 +32,9 @@ namespace UCRS.Data.Models
         /// The password.
         /// </value>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [MaxLength(GlobalConstants.MaxPasswordLenght)]
+        [MinLength(GlobalConstants.MinPasswordLenght)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
 
         /// <summary>

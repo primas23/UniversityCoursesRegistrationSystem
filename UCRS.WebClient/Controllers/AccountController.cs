@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 using UCRS.Common;
@@ -12,7 +10,12 @@ namespace UCRS.WebClient.Controllers
     public class AccountController : Controller
     {
         private IAccountService _accountService = null;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// </summary>
+        /// <param name="accountService">The account service.</param>
+        /// <exception cref="ArgumentNullException">The Account Service is null</exception>
         public AccountController(IAccountService accountService)
         {
             if (accountService == null)
@@ -45,7 +48,7 @@ namespace UCRS.WebClient.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            this.ModelState.AddModelError("", "Invalid login attempt.");
+            this.ModelState.AddModelError("", GlobalConstants.InvalidLoginAttemptMessage);
 
             return View(model);
         }
