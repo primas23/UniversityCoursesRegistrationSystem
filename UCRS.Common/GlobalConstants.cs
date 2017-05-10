@@ -76,5 +76,10 @@
         /// The salt
         /// </summary>
         public const string Salt = ".askdjh123kjn!";
+
+        /// <summary>
+        /// The cookie expiration time
+        /// </summary>
+        public const double CookieExpirationTime = 10.0;
     }
 }

@@ -66,7 +66,11 @@ namespace UCRS.WebClient.Controllers
                 Guid id = this._studentService.GetStudentIdbyEmail(model.Email);
                 string cookieValue = this._identifierProvider.EncodeId(id);
 
-                HttpCookie cookie = new HttpCookie(GlobalConstants.StudentCookieKey, cookieValue);
+                HttpCookie cookie = new HttpCookie(GlobalConstants.StudentCookieKey, cookieValue)
+                {
+                    Expires = DateTime.Now.AddMinutes(GlobalConstants.CookieExpirationTime)
+                };
+
                 Response.Cookies.Add(cookie);
 
                 return RedirectToAction("Index", "Home");
