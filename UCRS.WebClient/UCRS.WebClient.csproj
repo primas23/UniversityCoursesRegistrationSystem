@@ -178,7 +178,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\modalStudent.js" />
+    <Content Include="Scripts\modalCourse.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -201,6 +202,9 @@
     <Content Include="Views\Courses\Add.cshtml" />
     <Content Include="Views\Shared\_Add.cshtml" />
     <Content Include="Views\Shared\_Delete.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Home\AssignToCourse.cshtml" />
+    <Content Include="Views\Shared\_Course.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,16 +7,62 @@
     ViewBag.Title = "Home";
 }
 
-@{
-    foreach (Course course in this.Model.AllCourses)
-    {
-        if (this.Model.RegisteredCoursesIds.Contains(course.Id))
-        {
-            <div class="alert-success">@course.Name</div>
-        }
-        else
-        {
-            <div class="alert-info">@course.Name</div>
-        }
-    }
+@Html.AntiForgeryToken()
+
+<h4>Registerd for</h4>
+@foreach (Course course in this.Model.RegisterdCourses)
+{
+    <div class="row">
+        <div class="col-md-2">
+            @course.Name
+        </div>
+        <div class="col-md-10">
+            <button type="button" 
+                    class="btn btn-default unregisterModalButton"
+                    data-id="@course.Id" 
+                    data-name="@course.Name" 
+                    data-toggle="modal" 
+                    data-target="#studentModal">Unregister</button>
+        </div>
+    </div>
+}
+
+<h4>Not Registerd for</h4>
+@foreach (Course course in this.Model.NotRegisterdCourses)
+{
+    <div class="row">
+        <div class="col-md-2">
+            @course.Name
+        </div>
+        <div class="col-md-10">
+            <button type="button" 
+                    class="btn btn-default registerModalButton" 
+                    data-id="@course.Id" 
+                    data-name="@course.Name"
+                    data-toggle="modal" 
+                    data-target="#studentModal">Register</button>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="studentModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are you sure you want to register to <span id="courseNameModal"></span></h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-info registerOkButton" data-dismiss="modal" data-courseToRegisterId="">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalStudent")
 }

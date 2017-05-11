@@ -110,5 +110,34 @@ namespace UCRS.Services
                 .Select(s => s.Id)
                 .First();
         }
+
+        /// <summary>
+        /// Assigns the course to user.
+        /// </summary>
+        /// <param name="courseId">The course identifier.</param>
+        /// <param name="strudneId">The strudne identifier.</param>
+        public void AssignCourseToUser(Guid courseId, Guid strudneId)
+        {
+            Course course = this._context
+                .Courses
+                .FirstOrDefault(c => c.Id == courseId);
+
+            if (course == null)
+            {
+                return;
+            }
+
+            Student student = this._context
+                .Students
+                .FirstOrDefault(s => s.Id == strudneId);
+
+            if (student == null)
+            {
+                return;
+            }
+
+            student.Courses.Add(course);
+            this._context.SaveChanges();
+        }
     }
 }

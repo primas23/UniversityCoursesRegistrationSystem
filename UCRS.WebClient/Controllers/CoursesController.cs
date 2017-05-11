@@ -94,7 +94,7 @@ namespace UCRS.WebClient.Controllers
         {
             this._courseService.DeleteCourse(courseId);
 
-            return PartialView("Add");
+            return PartialView();
         }
 
         /// <summary>

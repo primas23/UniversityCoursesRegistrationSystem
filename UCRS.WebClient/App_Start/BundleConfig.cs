@@ -22,8 +22,11 @@ namespace UCRS.WebClient
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                      "~/Scripts/modal.js"));
+            bundles.Add(new ScriptBundle("~/bundles/modalCourse").Include(
+                      "~/Scripts/modalCourse.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/modalStudent").Include(
+                      "~/Scripts/modalStudent.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

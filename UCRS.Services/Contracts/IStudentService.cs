@@ -38,5 +38,12 @@ namespace UCRS.Services.Contracts
         /// <param name="email">The email.</param>
         /// <returns>The id of the student</returns>
         Guid GetStudentIdbyEmail(string email);
+
+        /// <summary>
+        /// Assigns the course to user.
+        /// </summary>
+        /// <param name="courseId">The course identifier.</param>
+        /// <param name="strudneId">The strudne identifier.</param>
+        void AssignCourseToUser(Guid courseId, Guid strudneId);
     }
 }

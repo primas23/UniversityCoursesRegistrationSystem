@@ -50,8 +50,7 @@ namespace UCRS.WebClient.Controllers
         [AuthorizeStudent]
         public ActionResult Index()
         {
-            HttpCookie loggedStudentCookie = HttpContext.Request.Cookies.Get(GlobalConstants.StudentCookieKey);
-            Guid strudneId = this._identifierProvider.DecodeId(loggedStudentCookie.Value);
+            Guid strudneId = GetStrudneId();
 
             StudentCoursesViewModel viewModel = new StudentCoursesViewModel
             {
@@ -67,6 +66,32 @@ namespace UCRS.WebClient.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        [AuthorizeStudent]
+        public ActionResult AssignToCourse(Guid courseId)
+        {
+            Guid strudneId = GetStrudneId();
+            this._studentService.AssignCourseToUser(courseId, strudneId);
 
+            return View();
+        }
+
+        /// <summary>
+        /// Gets the strudne identifier.
+        /// </summary>
+        /// <returns>The student id.</returns>
+        private Guid GetStrudneId()
+        {
+            HttpCookie loggedStudentCookie = HttpContext.Request.Cookies.Get(GlobalConstants.StudentCookieKey);
+
+            if (loggedStudentCookie != null)
+            {
+                Guid strudneId = this._identifierProvider.DecodeId(loggedStudentCookie.Value);
+
+                return strudneId;
+            }
+
+            return new Guid();
+        }
     }
 }
