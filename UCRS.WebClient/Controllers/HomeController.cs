@@ -5,7 +5,6 @@ using System.Web.Mvc;
 
 using UCRS.Common;
 using UCRS.Common.Contracts;
-using UCRS.Common.Providers;
 using UCRS.Services.Contracts;
 using UCRS.WebClient.Attributes;
 using UCRS.WebClient.Models;
@@ -67,5 +66,7 @@ namespace UCRS.WebClient.Controllers
 
             return View(viewModel);
         }
+
+
     }
 }

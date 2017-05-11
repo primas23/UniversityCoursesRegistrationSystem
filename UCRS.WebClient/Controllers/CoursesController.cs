@@ -78,11 +78,21 @@ namespace UCRS.WebClient.Controllers
             {
                 return View(courseViewModel);
             }
-            
+
             this._courseService.SaveCourse(new Course()
             {
                 Name = courseViewModel.Name
             });
+
+            return PartialView("Add");
+        }
+
+        [HttpPost]
+        [AuthorizeStudent]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Guid courseId)
+        {
+            this._courseService.DeleteCourse(courseId);
 
             return PartialView("Add");
         }

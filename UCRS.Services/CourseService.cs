@@ -73,5 +73,22 @@ namespace UCRS.Services
             this._context.Courses.Add(course);
             this._context.SaveChanges();
         }
+
+        /// <summary>
+        /// Deletes the course.
+        /// </summary>
+        /// <param name="courseId">The course identifier.</param>
+        public void DeleteCourse(Guid courseId)
+        {
+            Course course = this._context
+                .Courses
+                .FirstOrDefault(c => c.Id == courseId);
+
+            if (course != null)
+            {
+                this._context.Courses.Remove(course);
+                this._context.SaveChanges();
+            }
+        }
     }
 }

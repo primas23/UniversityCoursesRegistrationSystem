@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using UCRS.Data.Models;
@@ -23,5 +24,11 @@ namespace UCRS.Services.Contracts
         /// </summary>
         /// <param name="course">The course.</param>
         void SaveCourse(Course course);
+
+        /// <summary>
+        /// Deletes the course.
+        /// </summary>
+        /// <param name="courseId">The course identifier.</param>
+        void DeleteCourse(Guid courseId);
     }
 }

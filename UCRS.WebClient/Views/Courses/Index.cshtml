@@ -17,13 +17,21 @@
 
             for (var i = 0; i < this.Model.Count; i++)
             {
-                @Html.HiddenFor(m => m[i].Id)
+                <div data-groupid="@this.Model[i].Id">
+                    @Html.HiddenFor(m => m[i].Id)
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m[i].Name, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m[i].Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m[i].Name, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m[i].Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m[i].Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m[i].Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default deleteModalButton" data-toggle="modal" data-id="@this.Model[i].Id" data-name="@this.Model[i].Name" data-target="#deleteModal">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             }
@@ -38,15 +46,14 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Add New</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">Add New</button>
                 </div>
             </div>
         }
     </div>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog">
 
         <div class="modal-content">
@@ -62,6 +69,24 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are you sure ypu want to delete <span id="courseNameModal"></span></h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-danger deleteOkButton" data-dismiss="modal" data-courseToDeleteId="">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom")
 }
