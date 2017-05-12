@@ -116,7 +116,10 @@ namespace UCRS.Services
         /// </summary>
         /// <param name="courseId">The course identifier.</param>
         /// <param name="strudneId">The strudne identifier.</param>
-        public void AssignCourseToUser(Guid courseId, Guid strudneId)
+        /// <returns>
+        /// If cource was assigned
+        /// </returns>
+        public bool AssignCourseToUser(Guid courseId, Guid strudneId)
         {
             Course course = this._context
                 .Courses
@@ -124,7 +127,7 @@ namespace UCRS.Services
 
             if (course == null)
             {
-                return;
+                return false;
             }
 
             Student student = this._context
@@ -133,11 +136,16 @@ namespace UCRS.Services
 
             if (student == null)
             {
-                return;
+                return false;
+            }
+
+            if (student.Courses.Contains(course))
+            {
+                return false;
             }
 
             student.Courses.Add(course);
-            this._context.SaveChanges();
+            return this._context.SaveChanges() > -1;
         }
     }
 }

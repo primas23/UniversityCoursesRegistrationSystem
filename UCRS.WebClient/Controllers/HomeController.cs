@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -68,12 +69,19 @@ namespace UCRS.WebClient.Controllers
 
         [HttpPost]
         [AuthorizeStudent]
-        public ActionResult AssignToCourse(Guid courseId)
+        public ContentResult AssignToCourse(Guid courseId)
         {
             Guid strudneId = GetStrudneId();
-            this._studentService.AssignCourseToUser(courseId, strudneId);
+            bool isAsingedCrrectly = this._studentService.AssignCourseToUser(courseId, strudneId);
 
-            return View();
+            if (isAsingedCrrectly == false)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                string response = GlobalConstants.YouHaveAlreadyRegisteredMessage;
+                return Content(response);
+            }
+
+            return new ContentResult();
         }
 
         /// <summary>

@@ -63,15 +63,7 @@ namespace UCRS.WebClient.Controllers
 
             if (result == true)
             {
-                Guid id = this._studentService.GetStudentIdbyEmail(model.Email);
-                string cookieValue = this._identifierProvider.EncodeId(id);
-
-                HttpCookie cookie = new HttpCookie(GlobalConstants.StudentCookieKey, cookieValue)
-                {
-                    Expires = DateTime.Now.AddMinutes(GlobalConstants.CookieExpirationTime)
-                };
-
-                Response.Cookies.Add(cookie);
+                this.AssignCookieToRequest(model.Email);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -80,7 +72,7 @@ namespace UCRS.WebClient.Controllers
 
             return View(model);
         }
-
+        
         [HttpGet]
         public ActionResult Register()
         {
@@ -97,6 +89,7 @@ namespace UCRS.WebClient.Controllers
 
                 if (string.IsNullOrWhiteSpace(registerMessage))
                 {
+                    this.AssignCookieToRequest(model.Email);
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -104,6 +97,23 @@ namespace UCRS.WebClient.Controllers
             }
 
             return View(model);
+        }
+
+        /// <summary>
+        /// Assigns the cookie to request.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        private void AssignCookieToRequest(string email)
+        {
+            Guid id = this._studentService.GetStudentIdbyEmail(email);
+            string cookieValue = this._identifierProvider.EncodeId(id);
+
+            HttpCookie cookie = new HttpCookie(GlobalConstants.StudentCookieKey, cookieValue)
+            {
+                Expires = DateTime.Now.AddMinutes(GlobalConstants.CookieExpirationTime)
+            };
+
+            Response.Cookies.Add(cookie);
         }
     }
 }

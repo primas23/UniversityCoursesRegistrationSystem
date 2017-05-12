@@ -68,6 +68,11 @@
         public const string PasswordAndConfirmPasswordDoNotMatchMessage = "The password and confirmation password do not match.";
 
         /// <summary>
+        /// You have already registered message
+        /// </summary>
+        public const string YouHaveAlreadyRegisteredMessage = "You have already registerd";
+        
+        /// <summary>
         /// The login redirect URL
         /// </summary>
         public const string LoginRedirectUrl = "/account/login";

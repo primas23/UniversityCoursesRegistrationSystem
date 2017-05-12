@@ -44,6 +44,7 @@ namespace UCRS.Services.Contracts
         /// </summary>
         /// <param name="courseId">The course identifier.</param>
         /// <param name="strudneId">The strudne identifier.</param>
-        void AssignCourseToUser(Guid courseId, Guid strudneId);
+        /// <returns>If cource was assigned</returns>
+        bool AssignCourseToUser(Guid courseId, Guid strudneId);
     }
 }

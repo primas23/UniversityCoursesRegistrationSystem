@@ -10,40 +10,39 @@
 @Html.AntiForgeryToken()
 
 <h4>Registerd for</h4>
-@foreach (Course course in this.Model.RegisterdCourses)
-{
-    <div class="row">
-        <div class="col-md-2">
-            @course.Name
-        </div>
-        <div class="col-md-10">
-            <button type="button" 
-                    class="btn btn-default unregisterModalButton"
-                    data-id="@course.Id" 
-                    data-name="@course.Name" 
-                    data-toggle="modal" 
-                    data-target="#studentModal">Unregister</button>
-        </div>
-    </div>
-}
+<section class="registerdSection">
 
-<h4>Not Registerd for</h4>
-@foreach (Course course in this.Model.NotRegisterdCourses)
-{
-    <div class="row">
-        <div class="col-md-2">
-            @course.Name
+    @foreach (Course course in this.Model.RegisterdCourses)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                @course.Name
+            </div>
         </div>
-        <div class="col-md-10">
-            <button type="button" 
-                    class="btn btn-default registerModalButton" 
-                    data-id="@course.Id" 
-                    data-name="@course.Name"
-                    data-toggle="modal" 
-                    data-target="#studentModal">Register</button>
+    }
+</section>
+
+<h4>All courses</h4>
+<section>
+    @foreach (Course course in this.Model.AllCourses)
+    {
+        <div class="row" data-groupid="@course.Id">
+            <div class="col-md-2">
+                @course.Name
+            </div>
+            <div class="col-md-10">
+                <button type="button"
+                        class="btn btn-default registerModalButton"
+                        data-id="@course.Id"
+                        data-name="@course.Name"
+                        data-toggle="modal"
+                        data-target="#studentModal">
+                    Register
+                </button>
+            </div>
         </div>
-    </div>
-}
+    }
+</section>
 
 <div class="modal fade" id="studentModal" role="dialog">
     <div class="modal-dialog">
@@ -56,6 +55,19 @@
             <div class="modal-body">
                 <button type="button" class="btn btn-info registerOkButton" data-dismiss="modal" data-courseToRegisterId="">Ok</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
             </div>
         </div>
 

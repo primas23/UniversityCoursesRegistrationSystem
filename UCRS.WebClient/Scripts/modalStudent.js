@@ -9,8 +9,8 @@ $(".registerOkButton").on("click", function () {
     var id = $("#studentModal .registerOkButton").data('courseToRegisterId'),
         token = $('input[name="__RequestVerificationToken"]').val(),
         data = {
-         'courseId': id,
-         '__RequestVerificationToken': token
+            'courseId': id,
+            '__RequestVerificationToken': token
         };
 
     $.ajax({
@@ -19,15 +19,17 @@ $(".registerOkButton").on("click", function () {
         data: data,
         datatype: "html",
         success: function (data) {
-            var deletedElement = $('[data-groupid=' + id + ']');
-            deletedElement.remove();
-
-            console.log('success');
-            console.log(data);
+            $('[data-groupid=' + id + ']')
+                .clone()
+                .appendTo('.registerdSection')
+                .find('button')
+                .remove();
         },
         error: function (data) {
-            console.log('error');
-            console.log(data);
+            $("#errorModal .modal-title").text(data.responseText);
+            $('#errorModal').modal();
+
+            console.log('fail to register');
         }
     });
 });
