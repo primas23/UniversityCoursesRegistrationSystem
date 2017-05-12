@@ -44,7 +44,7 @@ namespace UCRS.WebClient.Controllers
         {
             IList<CourseViewModel> coursesViewModel = this.MapCoursesToViewModels(this._courseService.GetAllCourses());
 
-            return View(coursesViewModel);
+            return this.View(coursesViewModel);
         }
 
         [HttpPost]
@@ -54,19 +54,19 @@ namespace UCRS.WebClient.Controllers
         {
             if (ModelState.IsValid == false)
             {
-                return View(courseViewModels);
+                return this.View(courseViewModels);
             }
 
             this._courseService.SaveCourses(this.MapViewModelsToCourses(courseViewModels));
 
-            return RedirectToAction("Index", "Courses");
+            return this.RedirectToAction("Index", "Courses");
         }
 
         [HttpGet]
         [AuthorizeStudent]
         public ActionResult Add()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -76,7 +76,7 @@ namespace UCRS.WebClient.Controllers
         {
             if (ModelState.IsValid == false)
             {
-                return View(courseViewModel);
+                return this.View(courseViewModel);
             }
 
             this._courseService.SaveCourse(new Course()
@@ -84,7 +84,7 @@ namespace UCRS.WebClient.Controllers
                 Name = courseViewModel.Name
             });
 
-            return PartialView("Add");
+            return this.PartialView("Add");
         }
 
         [HttpPost]
@@ -94,7 +94,7 @@ namespace UCRS.WebClient.Controllers
         {
             this._courseService.DeleteCourse(courseId);
 
-            return PartialView();
+            return this.PartialView();
         }
 
         /// <summary>

@@ -6,13 +6,13 @@ using UCRS.Data.Models;
 
 namespace UCRS.Data
 {
-    public class UniversitySystemDbContext : DbContext , IUniversitySystemDbContext
+    public class UniversitySystemDbContext : DbContext, IUniversitySystemDbContext
     {
         public UniversitySystemDbContext()
             : base("UniversitySystemDBConnectionString")
         {
         }
-        
+
         public IDbSet<Student> Students { get; set; }
 
         public IDbSet<Course> Courses { get; set; }

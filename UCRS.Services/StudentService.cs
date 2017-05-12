@@ -72,18 +72,6 @@ namespace UCRS.Services
         }
 
         /// <summary>
-        /// Gets the student with the supplied id.
-        /// </summary>
-        /// <param name="studentId">The student identifier.</param>
-        /// <returns>Returns null if not fould.</returns>
-        private Student GetStudent(Guid studentId)
-        {
-            return this._context
-                .Students
-                .FirstOrDefault(s => s.Id == studentId);
-        }
-
-        /// <summary>
         /// Doeses the student exist.
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -146,6 +134,18 @@ namespace UCRS.Services
 
             student.Courses.Add(course);
             return this._context.SaveChanges() > -1;
+        }
+
+        /// <summary>
+        /// Gets the student with the supplied id.
+        /// </summary>
+        /// <param name="studentId">The student identifier.</param>
+        /// <returns>Returns null if not fould.</returns>
+        private Student GetStudent(Guid studentId)
+        {
+            return this._context
+                .Students
+                .FirstOrDefault(s => s.Id == studentId);
         }
     }
 }

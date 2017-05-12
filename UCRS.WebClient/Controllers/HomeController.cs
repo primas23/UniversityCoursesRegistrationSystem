@@ -51,7 +51,7 @@ namespace UCRS.WebClient.Controllers
         [AuthorizeStudent]
         public ActionResult Index()
         {
-            Guid strudneId = GetStrudneId();
+            Guid strudneId = this.GetStrudneId();
 
             StudentCoursesViewModel viewModel = new StudentCoursesViewModel
             {
@@ -64,21 +64,21 @@ namespace UCRS.WebClient.Controllers
                     .ToList()
             };
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
         [HttpPost]
         [AuthorizeStudent]
         public ContentResult AssignToCourse(Guid courseId)
         {
-            Guid strudneId = GetStrudneId();
+            Guid strudneId = this.GetStrudneId();
             bool isAsingedCrrectly = this._studentService.AssignCourseToUser(courseId, strudneId);
 
             if (isAsingedCrrectly == false)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 string response = GlobalConstants.YouHaveAlreadyRegisteredMessage;
-                return Content(response);
+                return this.Content(response);
             }
 
             return new ContentResult();

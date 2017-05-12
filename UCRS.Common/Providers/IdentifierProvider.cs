@@ -31,7 +31,6 @@ namespace UCRS.Common.Providers
             {
                 return new Guid(bytesAsString.Replace(GlobalConstants.Salt, string.Empty));
             }
-                                    
 
             return new Guid();
         }

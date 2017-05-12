@@ -8,8 +8,8 @@ namespace UCRS.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(UniversitySystemDbContext context)
@@ -39,8 +39,7 @@ namespace UCRS.Data.Migrations
                 math,
                 physics,
                 football,
-                chess
-            );
+                chess);
 
             Student peter = new Student()
             {
@@ -62,8 +61,7 @@ namespace UCRS.Data.Migrations
             context.Students.AddOrUpdate(
                 s => s.Name,
                 peter,
-                ivan
-            );
+                ivan);
 
             context.SaveChanges();
         }

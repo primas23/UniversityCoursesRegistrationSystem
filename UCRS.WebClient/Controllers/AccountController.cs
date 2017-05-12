@@ -47,7 +47,7 @@ namespace UCRS.WebClient.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -56,7 +56,7 @@ namespace UCRS.WebClient.Controllers
         {
             if (ModelState.IsValid == false)
             {
-                return View(model);
+                return this.View(model);
             }
 
             bool result = this._accountService.SignIn(model.Email, model.Password);
@@ -65,18 +65,18 @@ namespace UCRS.WebClient.Controllers
             {
                 this.AssignCookieToRequest(model.Email);
 
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
-            this.ModelState.AddModelError("", GlobalConstants.InvalidLoginAttemptMessage);
+            this.ModelState.AddModelError(string.Empty, GlobalConstants.InvalidLoginAttemptMessage);
 
-            return View(model);
+            return this.View(model);
         }
         
         [HttpGet]
         public ActionResult Register()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -90,13 +90,13 @@ namespace UCRS.WebClient.Controllers
                 if (string.IsNullOrWhiteSpace(registerMessage))
                 {
                     this.AssignCookieToRequest(model.Email);
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 }
 
-                this.ModelState.AddModelError("", registerMessage);
+                this.ModelState.AddModelError(string.Empty, registerMessage);
             }
 
-            return View(model);
+            return this.View(model);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace UCRS.WebClient.Controllers
                 Expires = DateTime.Now.AddMinutes(GlobalConstants.CookieExpirationTime)
             };
 
-            Response.Cookies.Add(cookie);
+            this.Response.Cookies.Add(cookie);
         }
     }
 }

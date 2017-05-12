@@ -72,7 +72,7 @@ namespace UCRS.Services
             this._context.Students.Add(student);
             this._context.SaveChanges();
                 
-            return "";
+            return string.Empty;
         }
     }
 }

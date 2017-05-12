@@ -22,6 +22,11 @@ namespace UCRS.WebClient.Attributes
             this._identifierProvider = new IdentifierProvider();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorizeStudentAttribute"/> class.
+        /// </summary>
+        /// <param name="identifierProvider">The identifier provider.</param>
+        /// <exception cref="ArgumentNullException">The Identifier Provider is null</exception>
         public AuthorizeStudentAttribute(IIdentifierProvider identifierProvider)
         {
             if (identifierProvider == null)
