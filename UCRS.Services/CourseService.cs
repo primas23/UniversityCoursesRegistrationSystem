@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using UCRS.Common;
 using UCRS.Data.Contracts;
 using UCRS.Data.Models;
@@ -26,6 +26,19 @@ namespace UCRS.Services
             }
 
             this._context = context;
+        }
+
+        /// <summary>
+        /// Gets all courses async.
+        /// </summary>
+        /// <returns>
+        /// Collection of all courses
+        /// </returns>
+        public async Task<ICollection<Course>> GetAllCoursesAsync()
+        {
+            return await Task.Run<IList<Course>>(() => this._context
+                .Courses
+                .ToList());
         }
 
         /// <summary>

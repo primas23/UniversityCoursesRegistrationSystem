@@ -14,7 +14,7 @@ namespace UCRS.WebClient.Models
         /// <value>
         /// The registered courses.
         /// </value>
-        public IList<Course> AllCourses { get; set; }
+        public ICollection<Course> AllCourses { get; set; }
 
         /// <summary>
         /// Gets the registerd courses.
@@ -22,7 +22,7 @@ namespace UCRS.WebClient.Models
         /// <value>
         /// The registerd courses.
         /// </value>
-        public IList<Course> RegisterdCourses
+        public ICollection<Course> RegisterdCourses
         {
             get
             {
@@ -43,7 +43,7 @@ namespace UCRS.WebClient.Models
         /// <value>
         /// The not registerd courses.
         /// </value>
-        public IList<Course> NotRegisterdCourses
+        public ICollection<Course> NotRegisterdCourses
         {
             get
             {
@@ -64,6 +64,6 @@ namespace UCRS.WebClient.Models
         /// <value>
         /// The registered courses ids.
         /// </value>
-        public IList<Guid> RegisteredCoursesIds { get; set; }
+        public ICollection<Guid> RegisteredCoursesIds { get; set; }
     }
 }

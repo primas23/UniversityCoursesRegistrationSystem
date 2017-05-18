@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using UCRS.Data.Models;
 
@@ -15,6 +16,15 @@ namespace UCRS.Services.Contracts
         /// Collection of the courses in which the student is registered.
         /// </returns>
         ICollection<Course> GetStudentCourses(Guid studentId);
+
+        /// <summary>
+        /// Gets the student courses ids async.
+        /// </summary>
+        /// <param name="studentId">The student identifier.</param>
+        /// <returns>
+        /// Collection of the courses ids in which the student is registered.
+        /// </returns>
+        Task<ICollection<Guid>> GetStudentCoursesIdsAsync(Guid studentId);
 
         /// <summary>
         /// Gets the student courses ids.

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using UCRS.Data.Models;
 
@@ -7,6 +8,12 @@ namespace UCRS.Services.Contracts
 {
     public interface ICourseService
     {
+        /// <summary>
+        /// Gets all courses async.
+        /// </summary>
+        /// <returns>Collection of all courses</returns>
+        Task<ICollection<Course>> GetAllCoursesAsync();
+
         /// <summary>
         /// Gets all courses.
         /// </summary>

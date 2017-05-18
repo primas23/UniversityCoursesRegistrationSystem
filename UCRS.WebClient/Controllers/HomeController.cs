@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 using UCRS.Common;
 using UCRS.Common.Contracts;
+using UCRS.Data.Models;
 using UCRS.Services.Contracts;
 using UCRS.WebClient.Attributes;
 using UCRS.WebClient.Models;
@@ -49,20 +51,20 @@ namespace UCRS.WebClient.Controllers
 
         [HttpGet]
         [AuthorizeStudent]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             Guid strudneId = this.GetStrudneId();
 
-            StudentCoursesViewModel viewModel = new StudentCoursesViewModel
-            {
-                RegisteredCoursesIds = this._studentService
-                    .GetStudentCoursesIds(strudneId)
-                    .ToList(),
+            StudentCoursesViewModel viewModel = new StudentCoursesViewModel();
 
-                AllCourses = this._courseService
-                    .GetAllCourses()
-                    .ToList()
-            };
+            var getStudnetsId = this._studentService
+                    .GetStudentCoursesIdsAsync(strudneId);
+
+            var allCourses = this._courseService
+                .GetAllCoursesAsync();
+
+            viewModel.RegisteredCoursesIds = await getStudnetsId;
+            viewModel.AllCourses = await allCourses;
 
             return this.View(viewModel);
         }

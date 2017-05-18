@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using UCRS.Common;
 using UCRS.Data.Contracts;
 using UCRS.Data.Models;
@@ -50,6 +51,28 @@ namespace UCRS.Services
         }
 
         /// <summary>
+        /// Gets the student courses ids async.
+        /// </summary>
+        /// <param name="studentId">The student identifier.</param>
+        /// <returns>
+        /// Collection of the courses ids in which the student is registered.
+        /// </returns>
+        public async Task<ICollection<Guid>> GetStudentCoursesIdsAsync(Guid studentId)
+        {
+            Student student = this.GetStudent(studentId);
+
+            if (student != null)
+            {
+                return await Task.Run<IList<Guid>>(() => student
+                    .Courses
+                    .Select(c => c.Id)
+                    .ToList());
+            }
+
+            return new List<Guid>();
+        }
+
+        /// <summary>
         /// Gets the student courses ids.
         /// </summary>
         /// <param name="studentId">The student identifier.</param>
@@ -67,7 +90,7 @@ namespace UCRS.Services
                     .Select(c => c.Id)
                     .ToList();
             }
-            
+
             return new List<Guid>();
         }
 
